@@ -1,9 +1,8 @@
 
 import './App.css';
-import { Routes, Route, NavLink } from 'react-router-dom'
-import Home from './components/Home'
-import About from './components/About';
-import Add from './components/Add';
+import { NavLink } from 'react-router-dom'
+import RouterConfig from './router/routes'
+
 
 function App() {
  
@@ -15,12 +14,7 @@ function App() {
         <NavLink to="/add">Add</NavLink>
       </header>
       <div className="content">
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/about" element={<About />}></Route>
-          <Route path="/add" element={<Add />}></Route>
-          <Route path="/edit/:id" element={<Add />}></Route>
-        </Routes>
+        <RouterConfig />
       </div>
     </div>
 
