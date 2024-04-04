@@ -2,6 +2,7 @@
 import './App.css';
 import { NavLink } from 'react-router-dom'
 import RouterConfig from './router/routes'
+import React from "react";
 
 
 function App() {
@@ -17,7 +18,6 @@ function App() {
         <RouterConfig />
       </div>
     </div>
-
   );
 }
 
