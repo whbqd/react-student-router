@@ -10,9 +10,10 @@ function App() {
   return (
     <div className="App">
       <header className="header-box">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/add">Add</NavLink>
+          <NavLink to="/todo">todo</NavLink>
+          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/add">Add</NavLink>
       </header>
       <div className="content">
         <RouterConfig />

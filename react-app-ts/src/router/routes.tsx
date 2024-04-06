@@ -4,11 +4,16 @@ import About from '../components/About';
 import Add from '../components/Add';
 import Tel from "../components/Tel";
 import Email from "../components/Email";
+import Todo from "../views/Todo";
 
 function Routes() {
     return useRoutes([
         {
-            path: '/',
+          path: '/',
+          element: <Navigate to="/todo" />
+        },
+        {
+            path: '/home',
             element: <Home />
         },
         {
@@ -36,6 +41,10 @@ function Routes() {
         {
             path: '/edit/:id',
             element: <Add />
+        },
+        {
+            path: '/todo',
+            element: <Todo />
         }
 
     ])
