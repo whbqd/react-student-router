@@ -7,3 +7,26 @@
     box-sizing: border-box;
     padding: 100px 0;
 }
+
+.list {
+/*    去除 ul 默认样式*/
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+.list .list-item  {
+
+}
+
+.list-item button {
+    margin-left: 30px;
+}
+
+
+.list-item span.ok {
+    text-decoration: line-through;
+}
+
+
