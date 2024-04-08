@@ -1,9 +1,13 @@
-import React from 'react';
+import React from 'react'
 import '../css/Todo.css'
+import List from "../components/Todo/List"
+import Input from "../components/Todo/Input"
+
 function Todo() {
     return (
         <div className="container">
-            <input type="text" className="form-control" />
+            <Input />
+            <List />
         </div>
     );
 }
