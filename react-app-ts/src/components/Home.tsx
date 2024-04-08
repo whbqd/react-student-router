@@ -24,14 +24,14 @@ function Home () {
         console.log(search)
         getStudentData(search)
     }, [search])
-    
+
     return (
         <div>
             <div style={{margin: '10px 0'}}>
-                <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="请输入用户名搜索" 
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="请输入用户名搜索"
                     aria-label="Username"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
@@ -53,8 +53,8 @@ function Home () {
                             <td>{ stu.name }</td>
                             <td>{ stu.age }</td>
                             <td>
-                            <button className="btn btn-dark" onClick={() => toEdit(stu.id as string)}>修改</button>
-                                <button className="btn btn-dark" onClick={() => handleDel(stu.id as string)}>删除</button>
+                                <button className="btn btn-primary" onClick={() => toEdit(stu.id as string)}>修改</button>
+                                <button className="btn btn-danger" style={{margin: '0 5px'}} onClick={() => handleDel(stu.id as string)}>删除</button>
                             </td>
                         </tr>
                     ))}

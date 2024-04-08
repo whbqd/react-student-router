@@ -10,3 +10,8 @@ export const delListActions = (index: number) => ({
     type: types.DEL,
     data: index
 })
+
+export const updateListActions = (index: number) => ({
+    type: types.UPDATE,
+    data: index
+})

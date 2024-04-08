@@ -1,4 +1,4 @@
-import {ADD, DEL} from './types'
+import {ADD, DEL, UPDATE} from './types'
 const defaultState = {
     list: [{
         content: '学习redux',
@@ -19,9 +19,15 @@ export function todoReducer (state = defaultState, action: action) {
             }
         }
         case DEL: {
-
             const list = [...state.list]
             list.splice(action.data, 1)
+            return {
+                list
+            }
+        }
+        case UPDATE: {
+            const list = [...state.list]
+            list[action.data].status = !list[action.data].status
             return {
                 list
             }
