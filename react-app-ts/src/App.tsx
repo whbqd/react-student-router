@@ -3,24 +3,13 @@ import './App.css';
 import { NavLink } from 'react-router-dom'
 import RouterConfig from './router/routes'
 import React from "react";
-import Input from "./components/Todo/Input";
-import List from "./components/Todo/List";
-
 
 function App() {
-
   return (
       <div className="App">
-          {/*<header className="header-box">*/}
-          {/*    <NavLink to="/todo">todo</NavLink>*/}
-          {/*    <NavLink to="/home">Home</NavLink>*/}
-          {/*    <NavLink to="/about">About</NavLink>*/}
-          {/*    <NavLink to="/add">Add</NavLink>*/}
-
-          {/*</header>*/}
           <nav className="navbar navbar-expand-lg bg-body-tertiary">
               <div className="container-fluid">
-                  <a className="navbar-brand" href="#">StudentOA</a>
+                  <NavLink className="navbar-brand" to="/">StudentOA</NavLink>
                   <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                           aria-expanded="false" aria-label="Toggle navigation">
