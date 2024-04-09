@@ -24,3 +24,11 @@ header a {
 header a.active {
     color: #f40;
 }
+
+.nav-link {
+    color: #a1a1a1;
+}
+.nav-link.active {
+    color: #17a2e0;
+    font-weight: bold;
+}

@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { getStudent, delStudent } from '../api/student'
+import { useSelector } from 'react-redux'
+import {ReduxRoot} from '../typings/ReduxRoot'
+
+
 function Home () {
     const [student, setStudent] = useState<StudentType[]>([])
     const [search, setSearch] = useState('')
     const navigate = useNavigate()
 
+    const { studentList } = useSelector((state: any) => {
+        console.log('state>>>>>>', state)
+        return state.student
+    })
     async function getStudentData (name?: string) {
         const stu = await getStudent(name)
         setStudent(stu)
