@@ -25,4 +25,4 @@ export async function pacthSutdent (id: string, student: StudentType): Promise<S
 }
 
 
-// get<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>; 
+// get<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>;
