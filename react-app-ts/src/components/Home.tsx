@@ -1,36 +1,30 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { getStudent, delStudent } from '../api/student'
-import { useSelector } from 'react-redux'
-import {ReduxRoot} from '../typings/ReduxRoot'
-
-
+import { useAppSelector, useAppDispatch } from '../redux/store'
+import {getStudentList} from "../redux/studentSlice";
+import { useDispatch } from 'react-redux'
 function Home () {
     const [student, setStudent] = useState<StudentType[]>([])
     const [search, setSearch] = useState('')
     const navigate = useNavigate()
-
-    const { studentList } = useSelector((state: any) => {
+    const { studentList } = useAppSelector((state) => {
         console.log('state>>>>>>', state)
         return state.student
     })
-    async function getStudentData (name?: string) {
-        const stu = await getStudent(name)
-        setStudent(stu)
-    }
+    const dispatch= useDispatch()
     async function handleDel (id: string) {
         await delStudent(id)
-        await getStudentData()
+        // useAppDispatch(getStudentList())
     }
     function toEdit (id: string) {
         navigate(`/edit/${id}`)
     }
     useEffect(() => {
-        getStudentData()
+        dispatch(getStudentList() as any)
     }, [])
     useEffect(() => {
-        console.log(search)
-        getStudentData(search)
+        // useAppDispatch(getStudentList(search))
     }, [search])
 
     return (
@@ -55,7 +49,7 @@ function Home () {
                     </tr>
                 </thead>
                 <tbody>
-                    {student.map((stu, index) => (
+                    {studentList.map((stu, index) => (
                         <tr key={stu.id}>
                             <th scope="row">{index + 1}</th>
                             <td>{ stu.name }</td>

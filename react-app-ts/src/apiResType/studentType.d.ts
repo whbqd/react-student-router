@@ -8,6 +8,6 @@
 
 declare type StudentType = {
     id ?: string
-    name: string
+    name ?: string
     age: number
 }
