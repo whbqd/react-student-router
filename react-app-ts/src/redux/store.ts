@@ -1,13 +1,14 @@
-import {AsyncThunkAction, configureStore} from '@reduxjs/toolkit'
+import {configureStore} from '@reduxjs/toolkit'
 import todoSliceReducer from './todoSlice'
 import studentReducer from "./studentSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import {AsyncThunkConfig} from "@reduxjs/toolkit/dist/createAsyncThunk";
+
+
 const store = configureStore({
     reducer: {
         todo: todoSliceReducer,
         student: studentReducer
-    }
+    },
 })
 
 export default store

@@ -1,30 +1,29 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { getStudent, delStudent } from '../api/student'
-import { useAppSelector, useAppDispatch } from '../redux/store'
+import {  delStudent } from '../api/student'
+import { useAppSelector } from '../redux/store'
 import {getStudentList} from "../redux/studentSlice";
 import { useDispatch } from 'react-redux'
 function Home () {
-    const [student, setStudent] = useState<StudentType[]>([])
     const [search, setSearch] = useState('')
     const navigate = useNavigate()
-    const { studentList } = useAppSelector((state) => {
-        console.log('state>>>>>>', state)
-        return state.student
-    })
+    const { studentList } = useAppSelector(state => state.student)
     const dispatch= useDispatch()
     async function handleDel (id: string) {
         await delStudent(id)
-        // useAppDispatch(getStudentList())
+        dispatch(getStudentList(search) as any)
     }
     function toEdit (id: string) {
         navigate(`/edit/${id}`)
     }
     useEffect(() => {
-        dispatch(getStudentList() as any)
+        if (studentList.length === 0) {
+            // 获取学生列表
+            dispatch(getStudentList() as any)
+        }
     }, [])
     useEffect(() => {
-        // useAppDispatch(getStudentList(search))
+        dispatch(getStudentList(search) as any)
     }, [search])
 
     return (
@@ -36,7 +35,7 @@ function Home () {
                     placeholder="请输入用户名搜索"
                     aria-label="Username"
                     value={search}
-                    onChange={(e) => setSearch(e.target.value)}
+                    onChange={e => setSearch(e.target.value)}
                     aria-describedby="basic-addon1" />
             </div>
             <table className="table">

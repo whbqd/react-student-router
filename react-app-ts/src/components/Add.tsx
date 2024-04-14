@@ -1,7 +1,12 @@
 import { addStudent, getStudentById, pacthSutdent } from '../api/student'
 import { FormEvent, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addStudentList } from '../redux/studentSlice'
+
+
 function Add () {
+    const dispatch = useDispatch()
     const [form, setForm] = useState<StudentType>({
         name: '',
         age: 0
@@ -27,7 +32,7 @@ function Add () {
             }
         }
         try {
-            const result = id ? await pacthSutdent(id, form) : await addStudent(form)
+            const result = id ? await pacthSutdent(id, form) : await dispatch(addStudentList(form) as any)
             console.log('result>', result)
             setMsg(id ? '修改成功!!' : '添加成功！！！')
         } catch(err) {
