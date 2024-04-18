@@ -20,7 +20,7 @@ export async function delStudent (id: string) : Promise<StudentType> {
 }
 
 // 修改学生
-export async function pacthSutdent (id: string, student: StudentType): Promise<StudentType> {
+export async function patchStudent (id: string, student: StudentType): Promise<StudentType> {
     return patch(`/students/${id}`, student)
 }
 

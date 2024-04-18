@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import {  delStudent } from '../api/student'
 import { useAppSelector } from '../redux/store'
-import {getStudentList} from "../redux/studentSlice";
+import { getStudentList, deleteStudent } from "../redux/studentSlice";
 import { useDispatch } from 'react-redux'
 function Home () {
     const [search, setSearch] = useState('')
@@ -10,8 +9,7 @@ function Home () {
     const { studentList } = useAppSelector(state => state.student)
     const dispatch= useDispatch()
     async function handleDel (id: string) {
-        await delStudent(id)
-        dispatch(getStudentList(search) as any)
+        await dispatch(deleteStudent(id) as any)
     }
     function toEdit (id: string) {
         navigate(`/edit/${id}`)

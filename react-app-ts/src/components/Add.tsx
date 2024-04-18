@@ -1,8 +1,9 @@
-import { addStudent, getStudentById, pacthSutdent } from '../api/student'
+import { getStudentById  } from '../api/student'
 import { FormEvent, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { addStudentList } from '../redux/studentSlice'
+import { useAppSelector } from '../redux/store'
+import { addStudentList, editStudent } from '../redux/studentSlice'
 
 
 function Add () {
@@ -11,6 +12,7 @@ function Add () {
         name: '',
         age: 0
     })
+    const { studentList } = useAppSelector(state => state.student)
     const { id } = useParams()
     const [msg, setMsg] = useState('---添加学生---')
     // 统一绑定form
@@ -32,7 +34,7 @@ function Add () {
             }
         }
         try {
-            const result = id ? await pacthSutdent(id, form) : await dispatch(addStudentList(form) as any)
+            const result = id ? await dispatch(editStudent({ id, student: form}) as any) : await dispatch(addStudentList(form) as any)
             console.log('result>', result)
             setMsg(id ? '修改成功!!' : '添加成功！！！')
         } catch(err) {
@@ -42,11 +44,12 @@ function Add () {
     // 修改回填
     useEffect(() => {
         if (id) {
-            getStudentById(id).then(stuInfo => {
-                setForm(stuInfo)
-            })
+            const [ studentInfo] = studentList.filter(stu => stu.id === id)
+            if (studentInfo) {
+               setForm(studentInfo)
+            }
         }
-    }, [id])
+    }, [id, studentList])
     return (
         <div style={{padding: '10px'}}>
             <div className="alert alert-primary" role="alert">
@@ -63,7 +66,7 @@ function Add () {
                     <input value={form.age} onChange={e=> update('age', +e.target.value)} type="text" className="form-control" id="exampleInputPassword1"/>
                 </div>
                 <button type="submit" className="btn btn-primary">{ id ? '修改' : '新增' }</button>
-                </form>
+            </form>
         </div>
     )
 }
